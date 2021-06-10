@@ -1,7 +1,4 @@
 from django.shortcuts import render
-
-# Create your views here.
-from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import Http404
 from django.template import loader
@@ -29,7 +26,6 @@ def joblist(request):
 
 def detail(request, job_id):
     try:
-
         job = Job.objects.get(id=job_id)
         job.city_name = Cities[job.job_city]
         print(job)

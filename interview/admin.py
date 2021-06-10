@@ -15,6 +15,7 @@ from interview.models import Candidate
 
 logger = logging.getLogger(__name__)
 
+# 导出的字段
 exportable_fields = (
     'username', 'city', 'phone', 'bachelor_school', 'master_school', 'degree', 'first_result', 'first_interviewer_user',
     'second_result', 'second_interviewer_user', 'hr_result', 'hr_score', 'hr_remark', 'hr_interviewer_user')
@@ -96,7 +97,7 @@ class CandidateAdmin(admin.ModelAdmin):
     # 查询字段
     search_fields = ('username', 'phone', 'email', 'bachelor_school')
 
-    ### 列表页排序字段
+    # 列表页排序字段
     ordering = ('hr_result', 'second_result', 'first_result',)
 
     # 一面面试官仅填写一面反馈， 二面面试官可以填写二面反馈
@@ -109,7 +110,7 @@ class CandidateAdmin(admin.ModelAdmin):
             return cf.default_fieldsets_second
         return cf.default_fieldsets
 
-    # 对于非管理员，非HR，获取自己是一面面试官或者二面面试官的候选人集合:s
+    # 对于非管理员，非HR，获取自己是一面面试官或者二面面试官的候选人集合
     def get_queryset(self, request):  # show data only owned by the user
         qs = super(CandidateAdmin, self).get_queryset(request)
 
@@ -120,6 +121,7 @@ class CandidateAdmin(admin.ModelAdmin):
             Q(first_interviewer_user=request.user) | Q(second_interviewer_user=request.user))
 
     def get_list_editable(self, request):
+        # 获取可编辑的字段，如果是超级管理员或者hr可以有编辑的权限
         group_names = self.get_group_names(request.user)
         if request.user.is_superuser or 'hr' in group_names:
             return ('first_interviewer_user', 'second_interviewer_user',)
@@ -140,11 +142,12 @@ class CandidateAdmin(admin.ModelAdmin):
         return group_names
 
     def get_readonly_fields(self, request, obj):
-        # 如果登陆用户的权限是面试官，则面试官为只读
+        # 如果登陆用户的权限是面试官，则面试官为只读，没有修改面试官的权限
         group_names = self.get_group_names(request.user)
 
         if 'interviewer' in group_names:
             logger.info("interviewer is in user's group for %s" % request.user.username)
+            # 返回只读的字段
             return ('first_interviewer_user', 'second_interviewer_user',)
         return ()
 

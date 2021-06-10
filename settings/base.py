@@ -166,7 +166,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+# 登陆从定向的地址
 LOGIN_REDIRECT_URL = '/'
 SIMPLE_BACKEND_REDIRECT_URL = '/accounts/login/'
 
@@ -175,7 +175,7 @@ SIMPLE_BACKEND_REDIRECT_URL = '/accounts/login/'
 
 LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -228,4 +228,5 @@ AUTHENTICATION_BACKENDS = {"django_python3_ldap.auth.LDAPBackend", 'django.contr
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DINGTALK_WEB_HOOK = "https://oapi.dingtalk.com/robot/send?access_token=4a0ff15d7f39aef9e670c744c2e8e618f107cb1661589a96bf1c51ccb648867f"
+# 钉钉机器人接口
+DINGTALK_WEB_HOOK = ""
