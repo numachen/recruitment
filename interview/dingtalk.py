@@ -1,7 +1,8 @@
-#coding=utf-8
+# coding=utf-8
 from dingtalkchatbot.chatbot import DingtalkChatbot
 
 from django.conf import settings
+
 
 def send(message, at_mobiles=[]):
     # 引用 settings里面配置的钉钉群消息通知的WebHook地址:
@@ -14,6 +15,4 @@ def send(message, at_mobiles=[]):
     # xiaoding = DingtalkChatbot(webhook, secret=secret)
 
     # Text消息@所有人
-    xiaoding.send_text(msg=('面试通知: %s' % message), at_mobiles =at_mobiles )
-
-
+    xiaoding.send_text(msg=('面试通知: %s' % message), at_mobiles=at_mobiles)
