@@ -3,13 +3,14 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.db.models import Q
 
+from jobs.models import Resume
+from interview import candidate_field as cf
 from .dingtalk import send
 
 import csv
 import logging
 from datetime import datetime
 
-from interview import candidate_field as cf
 
 from interview.models import Candidate
 

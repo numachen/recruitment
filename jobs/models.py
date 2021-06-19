@@ -49,7 +49,7 @@ class Resume(models.Model):
     applicant = models.ForeignKey(User, verbose_name=_("申请人"), null=True, on_delete=models.SET_NULL)
     city = models.CharField(max_length=135, verbose_name=_('城市'))
     phone = models.CharField(max_length=135, verbose_name=_('手机号码'))
-    email = models.EmailField(max_length=135, blank=True, verbose_name=_('邮箱'))
+    email = models.EmailField(max_length=135, blank=True, verbose_name='邮箱', help_text='请输入邮箱地址！')
     apply_position = models.CharField(max_length=135, blank=True, verbose_name=_('应聘职位'))
     born_address = models.CharField(max_length=135, blank=True, verbose_name=_('生源地'))
     gender = models.CharField(max_length=135, blank=True, verbose_name=_('性别'))

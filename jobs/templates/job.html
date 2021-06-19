@@ -9,7 +9,7 @@
         <h2>岗位名称：{{job.job_name}} </h2>
 
         城市：
-        {{job.city_name}} <p></p>
+         {{job.city_name}} <p></p>
     </div>
     <hr>
     <div class="position_responsibility" style="width:600px;">
@@ -21,7 +21,7 @@
     <hr>
     <div class="position_requirement" style="width:600px; ">
         <h3>任职要求：</h3>
-        <pre style="font-size:16px">{{job.job_requirement}}
+        <pre style="font-size:16px">{{job.job_requirement | safe}}
         </pre>
     </div>
 
