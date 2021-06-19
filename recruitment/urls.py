@@ -23,6 +23,9 @@ urlpatterns = [
     url(r"^", include("jobs.urls")),
     # 后端UI应用
     path('grappelli', include('grappelli.urls')),
+    # 多语言应用,切换中、英文
+    path('i18n/', include('django.conf.urls.i18n')),
+
     path('admin/', admin.site.urls),
     # 注册、登陆功能模块
     url(r'^accounts/', include('registration.backends.simple.urls')),

@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.contrib import messages
+from django.utils.safestring import mark_safe
+
 from django.http import HttpResponse
 from django.db.models import Q
 
@@ -10,7 +12,6 @@ from .dingtalk import send
 import csv
 import logging
 from datetime import datetime
-
 
 from interview.models import Candidate
 
@@ -86,7 +87,7 @@ class CandidateAdmin(admin.ModelAdmin):
 
     # 展示的字段
     list_display = (
-        'username', 'city', 'bachelor_school', 'first_score', 'first_result', 'first_interviewer_user',
+        'username', 'city', 'bachelor_school', 'get_resume', 'first_score', 'first_result', 'first_interviewer_user',
         'second_result', 'second_interviewer_user', 'hr_score', 'hr_result', 'hr_interviewer_user',
     )
 
@@ -100,6 +101,18 @@ class CandidateAdmin(admin.ModelAdmin):
 
     # 列表页排序字段
     ordering = ('hr_result', 'second_result', 'first_result',)
+
+    # 定义一个方法，插入一个字段，可以查看简历的来源
+    def get_resume(self, obj):
+        if not obj.phone:
+            return ""
+        resumes = Resume.objects.filter(phone=obj.phone)
+        if resumes and len(resumes) > 0:
+            return mark_safe(u'<a href="/resume/%s" target="_blank">%s</a' % (resumes[0].id, "查看简历"))
+        return ""
+
+    get_resume.short_description = '查看简历'
+    get_resume.allow_tags = True
 
     # 一面面试官仅填写一面反馈， 二面面试官可以填写二面反馈
     def get_fieldsets(self, request, obj=None):

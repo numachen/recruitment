@@ -62,13 +62,13 @@ class Resume(models.Model):
     doctor_school = models.CharField(max_length=135, blank=True, verbose_name=u'博士生学校')
     major = models.CharField(max_length=135, blank=True, verbose_name=_('专业'))
     degree = models.CharField(max_length=135, choices=DEGREE_TYPE, blank=True, verbose_name=_('学历'))
-    created_date = models.DateTimeField(verbose_name="创建日期", default=datetime.now)
-    modified_date = models.DateTimeField(verbose_name="修改日期", auto_now=True)
+    created_date = models.DateTimeField(verbose_name=_('创建日期'), default=datetime.now)
+    modified_date = models.DateTimeField(verbose_name=_('修改日期'), auto_now=True)
 
     # 候选人自我介绍，工作经历，项目经历
-    candidate_introduction = models.TextField(max_length=1024, blank=True, verbose_name=u'自我介绍')
-    work_experience = models.TextField(max_length=1024, blank=True, verbose_name=u'工作经历')
-    project_experience = models.TextField(max_length=1024, blank=True, verbose_name=u'项目经历')
+    candidate_introduction = models.TextField(max_length=1024, blank=True, verbose_name=_('自我介绍'))
+    work_experience = models.TextField(max_length=1024, blank=True, verbose_name=_('工作经历'))
+    project_experience = models.TextField(max_length=1024, blank=True, verbose_name=_('项目经历'))
 
     class Meta:
         verbose_name = _('简历')

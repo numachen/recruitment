@@ -13,7 +13,6 @@ from django.conf.urls import url
 from django.urls import path
 from jobs import views
 
-
 urlpatterns = [
     # 职位列表
     path("joblist/", views.joblist, name="joblist"),
@@ -22,6 +21,8 @@ urlpatterns = [
     path("job/<int:job_id>/", views.detail, name="detail"),
 
     path('resume/add/', views.ResumeCreateView.as_view(), name='resume-add'),
+    # 查看简历原始的页面
+    path('resume/<int:pk>/', views.ResumeDetailView.as_view(), name='resume-detail'),
     # 首页自动跳转到  职位列表
     url(r"^$", views.joblist, name="name"),
 ]
