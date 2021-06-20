@@ -35,8 +35,8 @@ def notify_interviewer(modeladmin, request, queryset):
         else:
             return messages.add_message(request, messages.INFO, '请先添加面试官！')
 
-    # 这里的消息发送到钉钉， 或者通过 Celery 异步发送到钉钉
-    send("候选人 %s 进入面试环节，亲爱的面试官，请准备好面试： %s" % (candidates, interviewers))
+    # 这里的消息发送到钉钉， 或者通过 Celery 异步发送到钉钉,一个参数是通知信息，第二参数是，通知类别，第三个参数是@群里组员
+    send("候选人 %s 进入面试环节，亲爱的面试官，请准备好面试： %s" % (candidates, interviewers), '面试通知', ['18788879076'])
     # send_dingtalk_message.delay("候选人 %s 进入面试环节，亲爱的面试官，请准备好面试： %s" % (candidates, interviewers) )
     messages.add_message(request, messages.INFO, '已经成功发送面试通知')
 

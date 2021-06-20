@@ -13,6 +13,11 @@ from django.conf.urls import url
 from django.urls import path
 from jobs import views
 
+
+def trigger_error(request):
+    division_by_zero = 1 / 0
+
+
 urlpatterns = [
     # 职位列表
     path("joblist/", views.joblist, name="joblist"),
@@ -25,4 +30,6 @@ urlpatterns = [
     path('resume/<int:pk>/', views.ResumeDetailView.as_view(), name='resume-detail'),
     # 首页自动跳转到  职位列表
     url(r"^$", views.joblist, name="name"),
+    # 所有报错，都上报到sentry服务器，进行错误收集，这只是一个测试视图
+    path('sentry-debug/', trigger_error),
 ]

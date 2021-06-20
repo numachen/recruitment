@@ -9,3 +9,6 @@
 第三步：编译生成可以高效使用的二进制文件 (.mo) 文件<br>
 django-admin compilemessages<br>
 第四步：配置URL路由，前端添加切换语言的功能按钮；
+
+#2021年6月20日<br>
+
