@@ -12,3 +12,7 @@ django-admin compilemessages<br>
 
 #2021年6月20日<br>
 
+#2021年6月23日<br>
+测试celery、flower<br>
+启动celery：celery worker -A recruitment  -l debug -c 4<br>
+启动flower：celery -A recruitment flower --broker=redis://@localhost:6379/0<br>
